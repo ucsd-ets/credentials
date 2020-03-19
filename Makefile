@@ -2,7 +2,7 @@
 NODE_BIN=./node_modules/.bin
 TOX = ''
 
-.PHONY: requirements upgrade piptools production-requirements all-requirements
+.PHONY: requirements upgrade piptools production-requirements all-requirements check_keywords
 
 ifdef TOXENV
 TOX := tox -- #to isolate each tox environment if TOXENV is defined
@@ -169,3 +169,7 @@ upgrade: piptools ## update the requirements/*.txt files with the latest package
 	grep -e "^django==" requirements/production.txt > requirements/django.txt
 	sed '/^[dD]jango==/d' requirements/test.txt > requirements/test.tmp
 	mv requirements/test.tmp requirements/test.txt
+
+check_keywords: ## Scan the Django models in all installed apps in this project for restricted field names
+	python manage.py check_reserved_keywords --override_file db_keyword_overrides.yml --system STITCH
+	python manage.py check_reserved_keywords --override_file db_keyword_overrides.yml --system SNOWFLAKE
