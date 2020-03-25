@@ -65,6 +65,7 @@ PROJECT_APPS = [
     'credentials.apps.credentials',
     'credentials.apps.edx_django_extensions',
     'credentials.apps.credentials_theme_openedx',
+    'credentials.apps.credentials_theme_ucsd',
     'credentials.apps.records',
 ]
 
