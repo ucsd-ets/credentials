@@ -276,6 +276,7 @@ TEMPLATES = [
                 'django.template.context_processors.tz',
                 'django.contrib.messages.context_processors.messages',
                 'credentials.apps.core.context_processors.core',
+                'credentials.apps.credentials_theme_ucsd.context_processors.marketing_urls'
             ),
             'debug': True,  # Django will only display debug pages if the global DEBUG setting is set to True.
         }
@@ -430,3 +431,14 @@ if os.environ.get('ENABLE_DJANGO_TOOLBAR', False):
         'debug_toolbar.panels.redirects.RedirectsPanel',
     ]
 # END DJANGO DEBUG TOOLBAR CONFIGURATION
+
+# UCSD CONFIGURATIONS
+MARKETING_URLS = {
+    'ABOUT_URL': 'set-me-please',
+    'PROGRAMS_URL': 'set-me-please',
+    'COURSES_URL': 'set-me-please',
+    'CATALOG_URL': 'set-me-please',
+    'FAQ_URL': 'set-me-please',
+    'HELP_URL': 'set-me-please',
+    'CONTACT_URL': 'set-me-please'
+}
