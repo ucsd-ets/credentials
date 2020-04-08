@@ -32,6 +32,8 @@ module.exports = {
     entry: {
         'base.style-ltr': './credentials/static/sass/main-ltr.scss',
         'base.style-rtl': './credentials/static/sass/main-rtl.scss',
+        'ucsd.style-ltr': './credentials/apps/credentials_theme_ucsd/static/sass/main-ltr.scss',
+        'ucsd.style-rtl': './credentials/apps/credentials_theme_ucsd/static/sass/main-rtl.scss',
         'openedx.certificate.style-ltr': './credentials/apps/credentials_theme_openedx/static/sass/certificate-ltr.scss',
         'openedx.certificate.style-rtl': './credentials/apps/credentials_theme_openedx/static/sass/certificate-rtl.scss',
         'sharing': './credentials/static/js/sharing.js',

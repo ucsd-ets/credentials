@@ -14,7 +14,7 @@ LOGGING = get_logger_config()
 
 # Keep track of the names of settings that represent dicts. Instead of overriding the values in base.py,
 # the values read from disk should UPDATE the pre-configured dicts.
-DICT_UPDATE_KEYS = ('JWT_AUTH',)
+DICT_UPDATE_KEYS = ('JWT_AUTH', 'MARKETING_URLS')
 
 # AMAZON S3 STORAGE CONFIGURATION
 # See: https://django-storages.readthedocs.org/en/latest/backends/amazon-S3.html#settings
@@ -43,6 +43,8 @@ with open(CONFIG_FILE, encoding='utf-8') as f:
 
     # Load the files storage backend settings for django storages
     vars().update(FILE_STORAGE_BACKEND)
+
+
 
 if 'EXTRA_APPS' in locals():
     INSTALLED_APPS += EXTRA_APPS

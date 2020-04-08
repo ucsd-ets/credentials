@@ -1,6 +1,8 @@
+import yaml
+
 from credentials.settings._debug_toolbar import *
 from credentials.settings.base import *
-from credentials.settings.utils import get_logger_config, str2bool
+from credentials.settings.utils import get_logger_config, str2bool, get_env_setting
 
 DEBUG = str2bool(os.environ.get('DEBUG', True))
 
@@ -62,3 +64,14 @@ JWT_AUTH['JWT_ISSUERS'].append({
     'ISSUER': 'http://edx.devstack.lms:18000/oauth2',
     'SECRET_KEY': 'lms-secret',
 })
+
+# UCSD CONFIGURATIONS
+MARKETING_URLS = {
+    'ABOUT_URL': os.environ.get('ABOUT_URL', 'http://edx.devstack.lms:18000/about'),
+    'PROGRAMS_URL': os.environ.get('PROGRAMS_URL', 'http://edx.devstack.lms:18000/dashboard/programs/'),
+    'COURSES_URL': os.environ.get('COURSES_URL', 'http://edx.devstack.lms:18000/dashboard'),
+    'CATALOG_URL': os.environ.get('CATALOG_URL', 'http://edx.devstack.lms:18000/courses'),
+    'FAQ_URL': os.environ.get('FAQ_URL', 'http://edx.devstack.lms:18000/faq'),
+    'HELP_URL': os.environ.get('HELP_URL', 'http://edx.devstack.lms:18000/help'),
+    'CONTACT_URL': os.environ.get('CONTACT_URL', 'http://edx.devstack.lms:18000/support/contact_us')
+}
