@@ -50,7 +50,7 @@ STATIC_URL = os.environ.get('STATIC_URL', '/static/')
 OAUTH2_PROVIDER_URL = 'http://edx.devstack.lms:18000/oauth2'
 SOCIAL_AUTH_EDX_OIDC_KEY = os.environ.get('SOCIAL_AUTH_EDX_OIDC_KEY', 'credentials-key')
 SOCIAL_AUTH_EDX_OIDC_SECRET = os.environ.get('SOCIAL_AUTH_EDX_OIDC_SECRET', 'credentials-secret')
-SOCIAL_AUTH_EDX_OIDC_ISSUER = os.environ.get('SOCIAL_AUTH_EDX_OIDC_ISSUER', 'http://edx.devstack.lms:18000/oauth2')
+SOCIAL_AUTH_EDX_OIDC_ISSUER = os.environ.get('SOCIAL_AUTH_EDX_OIDC_ISSUER', 'http://localhost:18000/oauth2')
 SOCIAL_AUTH_EDX_OIDC_URL_ROOT = os.environ.get('SOCIAL_AUTH_EDX_OIDC_URL_ROOT', 'http://edx.devstack.lms:18000/oauth2')
 SOCIAL_AUTH_EDX_OIDC_LOGOUT_URL = os.environ.get('SOCIAL_AUTH_EDX_OIDC_LOGOUT_URL', 'http://localhost:18000/logout')
 SOCIAL_AUTH_EDX_OIDC_PUBLIC_URL_ROOT = os.environ.get('SOCIAL_AUTH_EDX_OIDC_PUBLIC_URL_ROOT',
@@ -75,3 +75,8 @@ MARKETING_URLS = {
     'HELP_URL': os.environ.get('HELP_URL', 'http://edx.devstack.lms:18000/help'),
     'CONTACT_URL': os.environ.get('CONTACT_URL', 'http://edx.devstack.lms:18000/support/contact_us')
 }
+
+#####################################################################
+# Lastly, see if the developer has any local overrides.
+if os.path.isfile(join(dirname(abspath(__file__)), 'private.py')):
+    from .private import *  # pylint: disable=import-error
