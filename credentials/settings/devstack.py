@@ -1,6 +1,8 @@
+import yaml
+
 from credentials.settings._debug_toolbar import *
 from credentials.settings.base import *
-from credentials.settings.utils import get_logger_config, str2bool
+from credentials.settings.utils import get_logger_config, str2bool, get_env_setting
 
 DEBUG = str2bool(os.environ.get('DEBUG', True))
 
@@ -48,7 +50,7 @@ STATIC_URL = os.environ.get('STATIC_URL', '/static/')
 OAUTH2_PROVIDER_URL = 'http://edx.devstack.lms:18000/oauth2'
 SOCIAL_AUTH_EDX_OIDC_KEY = os.environ.get('SOCIAL_AUTH_EDX_OIDC_KEY', 'credentials-key')
 SOCIAL_AUTH_EDX_OIDC_SECRET = os.environ.get('SOCIAL_AUTH_EDX_OIDC_SECRET', 'credentials-secret')
-SOCIAL_AUTH_EDX_OIDC_ISSUER = os.environ.get('SOCIAL_AUTH_EDX_OIDC_ISSUER', 'http://edx.devstack.lms:18000/oauth2')
+SOCIAL_AUTH_EDX_OIDC_ISSUER = os.environ.get('SOCIAL_AUTH_EDX_OIDC_ISSUER', 'http://localhost:18000/oauth2')
 SOCIAL_AUTH_EDX_OIDC_URL_ROOT = os.environ.get('SOCIAL_AUTH_EDX_OIDC_URL_ROOT', 'http://edx.devstack.lms:18000/oauth2')
 SOCIAL_AUTH_EDX_OIDC_LOGOUT_URL = os.environ.get('SOCIAL_AUTH_EDX_OIDC_LOGOUT_URL', 'http://localhost:18000/logout')
 SOCIAL_AUTH_EDX_OIDC_PUBLIC_URL_ROOT = os.environ.get('SOCIAL_AUTH_EDX_OIDC_PUBLIC_URL_ROOT',
@@ -62,3 +64,19 @@ JWT_AUTH['JWT_ISSUERS'].append({
     'ISSUER': 'http://edx.devstack.lms:18000/oauth2',
     'SECRET_KEY': 'lms-secret',
 })
+
+# UCSD CONFIGURATIONS
+MARKETING_URLS = {
+    'ABOUT_URL': os.environ.get('ABOUT_URL', 'http://edx.devstack.lms:18000/about'),
+    'PROGRAMS_URL': os.environ.get('PROGRAMS_URL', 'http://edx.devstack.lms:18000/dashboard/programs/'),
+    'COURSES_URL': os.environ.get('COURSES_URL', 'http://edx.devstack.lms:18000/dashboard'),
+    'CATALOG_URL': os.environ.get('CATALOG_URL', 'http://edx.devstack.lms:18000/courses'),
+    'FAQ_URL': os.environ.get('FAQ_URL', 'http://edx.devstack.lms:18000/faq'),
+    'HELP_URL': os.environ.get('HELP_URL', 'http://edx.devstack.lms:18000/help'),
+    'CONTACT_URL': os.environ.get('CONTACT_URL', 'http://edx.devstack.lms:18000/support/contact_us')
+}
+
+#####################################################################
+# Lastly, see if the developer has any local overrides.
+if os.path.isfile(join(dirname(abspath(__file__)), 'private.py')):
+    from .private import *  # pylint: disable=import-error
