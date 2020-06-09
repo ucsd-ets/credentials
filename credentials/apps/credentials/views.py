@@ -90,7 +90,6 @@ class RenderCredential(SocialMediaMixin, ThemeViewMixin, TemplateView):
         content_language = to_language(user_credential.credential.language)
 
         context.update({
-            'document_banner': 'Checking',
             'user_credential': user_credential,
             'user_data': user_data,
             'child_templates': self.get_child_templates(),
@@ -182,7 +181,7 @@ class ExampleCredential(SocialMediaMixin, ThemeViewMixin, TemplateView):
             },
             'child_templates': {
                 'credential': self.select_theme_template(
-                    ['credentials/programs/default-certificate.html'.format(type=slugify(program_type))]),
+                    ['credentials/programs/{type}/certificate.html'.format(type=slugify(program_type))]),
                 'footer': self.select_theme_template(['_footer.html']),
                 'header': self.select_theme_template(['_header.html']),
             },
