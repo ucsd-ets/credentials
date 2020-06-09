@@ -117,6 +117,7 @@ class RenderCredential(SocialMediaMixin, ThemeViewMixin, TemplateView):
             'credentials/programs/{uuid}/certificate.html'.format(uuid=credential_type.program_uuid),
             'credentials/programs/{type}/certificate.html'.format(
                 type=slugify(credential_type.program_details.type)),
+            'credentials/programs/default-certificate.html'
         ]
 
         return self.select_theme_template(template_names)
