@@ -44,7 +44,7 @@ class RenderCredential(SocialMediaMixin, ThemeViewMixin, TemplateView):
     # This base template will include a separate template housing the requested credential body.
     # This allows us to use this one view to render credentials for any number of content types
     # (e.g., courses, programs).
-    template_name = 'credentials/base.html'
+    template_name = 'ucsd/credentials/base.html'
 
     @cached_property
     def user_credential(self):
@@ -88,7 +88,6 @@ class RenderCredential(SocialMediaMixin, ThemeViewMixin, TemplateView):
 
         user_data = user_credential.credential.site.siteconfiguration.get_user_api_data(user_credential.username)
         content_language = to_language(user_credential.credential.language)
-
         context.update({
             'user_credential': user_credential,
             'user_data': user_data,
@@ -117,6 +116,7 @@ class RenderCredential(SocialMediaMixin, ThemeViewMixin, TemplateView):
             'credentials/programs/{uuid}/certificate.html'.format(uuid=credential_type.program_uuid),
             'credentials/programs/{type}/certificate.html'.format(
                 type=slugify(credential_type.program_details.type)),
+            'credentials/programs/default-certificate.html'
         ]
 
         return self.select_theme_template(template_names)
