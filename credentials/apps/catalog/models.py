@@ -46,7 +46,7 @@ class Course(TimeStampedModel):
 
 class CourseRun(TimeStampedModel):
     """ CourseRun model. """
-    course = models.ForeignKey(Course, related_name='course_runs', on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, related_name='course_runs')
     uuid = models.UUIDField(verbose_name='UUID')
     key = models.CharField(max_length=255)
     title_override = models.CharField(
